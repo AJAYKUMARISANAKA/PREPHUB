@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepHub - Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Waiting Room -->
+    <div id="waitingRoom" class="quiz-layout">
+        <div class="waiting-card">
+            <div class="waiting-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-2">Waiting for Participants</h2>
+            <p class="text-gray-400 mb-6">Quiz will start when all participants join</p>
+            
+            <div class="quiz-code-display">
+                <span class="text-gray-400 text-sm">Quiz Code</span>
+                <span id="displayQuizCode" class="text-3xl font-bold text-indigo-400 font-mono">ABC123</span>
+            </div>
+
+            <div class="participants-counter">
+                <span id="joinedCount" class="text-4xl font-bold text-white">0</span>
+                <span class="text-gray-400">/</span>
+                <span id="totalParticipants" class="text-4xl font-bold text-gray-500">5</span>
+            </div>
+            <p class="text-gray-400 text-sm">participants joined</p>
+
+            <div class="waiting-dots mt-8">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Game -->
+    <div id="quizGame" class="quiz-layout hidden">
+        <div class="quiz-game-container">
+            <!-- Timer -->
+            <div class="quiz-timer-container">
+                <div class="quiz-timer-circle">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" class="timer-bg"/>
+                        <circle id="timerProgress" cx="50" cy="50" r="45" class="timer-progress"/>
+                    </svg>
+                    <span id="quizTimerText" class="timer-text">30</span>
+                </div>
+            </div>
+
+            <!-- Question -->
+            <div class="quiz-question-box">
+                <span id="quizQuestionNum" class="question-num-badge">Question 1/10</span>
+                <h2 id="quizQuestionText" class="text-2xl font-bold text-white text-center">
+                    What is the capital of France?
+                </h2>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="quizOptionsGrid" class="quiz-options-grid">
+                <button class="quiz-option" data-option="A" onclick="selectQuizOption('A')">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">Paris</span>
+                </button>
+                <button class="quiz-option" data-option="B" onclick="selectQuizOption('B')">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">London</span>
+                </button>
+                <button class="quiz-option" data-option="C" onclick="selectQuizOption('C')">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">Berlin</span>
+                </button>
+                <button class="quiz-option" data-option="D" onclick="selectQuizOption('D')">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">Madrid</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard -->
+    <div id="leaderboard" class="quiz-layout hidden">
+        <div class="leaderboard-card">
+            <div class="trophy-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-8">Leaderboard</h2>
+            
+            <div id="leaderboardList" class="leaderboard-list">
+                <!-- Dynamically generated -->
+            </div>
+
+            <button onclick="window.location.href='index.html'" class="btn-primary w-full max-w-md mx-auto py-4 mt-8">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initializeQuiz);
+    </script>
+</body>
+</html>
